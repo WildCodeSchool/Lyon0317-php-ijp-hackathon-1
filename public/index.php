@@ -2,8 +2,9 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$db = new \omdb\DbManager();
-$searchManager = new \omdb\SearchManager();
+$db             = new \omdb\DbManager();
+$searchManager  = new \omdb\SearchManager();
+$keywordManager        = new \omdb\KeywordManager($db);
 
 $loader = new Twig_Loader_Filesystem(__DIR__ . '/../view');
 $twig = new Twig_Environment($loader, array(
@@ -16,6 +17,7 @@ if($_SERVER['REQUEST_METHOD'] == "POST")
 {
     $searchManager->setTitle($_POST['title']);
     $data = $searchManager->getList();
+    $keyword = $searchManager;
 }
 
 

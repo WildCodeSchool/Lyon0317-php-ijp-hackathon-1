@@ -2,7 +2,7 @@
 
 namespace omdb;
 
-class searchManager
+class SearchManager
 {
 
     private $api = 'http://www.omdbapi.com/?';
