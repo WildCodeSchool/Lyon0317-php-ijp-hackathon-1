@@ -1,0 +1,17 @@
+{
+    "name": "omdb/ijp",
+    "authors": [
+        {
+            "name": "Johan Gaub",
+            "email": "johangaub@gmail.com"
+        }
+    ],
+    "require": {
+        "twig/twig": "^2.3"
+    },
+
+    "autoload": {
+        "psr-4": {"omdb\\": ["src/", "config/"]}
+    }
+
+}
