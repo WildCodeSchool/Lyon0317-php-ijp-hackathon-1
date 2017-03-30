@@ -18,7 +18,26 @@ class __TwigTemplate_9c29c2a671c03a9938c870e01e2eee13621e49341024fc5f67888b7a076
         // line 1
         echo "<div class=\"row\">
     <div class=\"col-xs-12 col-sm-12 col-md-12 col-lg-12\">
-
+        <table>
+        ";
+        // line 4
+        $context['_parent'] = $context;
+        $context['_seq'] = twig_ensure_traversable(($context["data"] ?? null));
+        foreach ($context['_seq'] as $context["_key"] => $context["record"]) {
+            // line 5
+            echo "            <tr>
+                <td>";
+            // line 6
+            echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["record"], "Title", array()), "html", null, true);
+            echo "</td>
+            </tr>
+        ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['record'], $context['_parent'], $context['loop']);
+        $context = array_intersect_key($context, $_parent) + $_parent;
+        // line 9
+        echo "        </table>
     </div>
 </div>";
     }
@@ -28,9 +47,14 @@ class __TwigTemplate_9c29c2a671c03a9938c870e01e2eee13621e49341024fc5f67888b7a076
         return "home.html.twig";
     }
 
+    public function isTraitable()
+    {
+        return false;
+    }
+
     public function getDebugInfo()
     {
-        return array (  19 => 1,);
+        return array (  40 => 9,  31 => 6,  28 => 5,  24 => 4,  19 => 1,);
     }
 
     public function getSourceContext()
