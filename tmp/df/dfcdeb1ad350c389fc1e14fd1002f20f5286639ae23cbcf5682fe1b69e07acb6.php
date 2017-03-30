@@ -58,7 +58,7 @@ class __TwigTemplate_9c29c2a671c03a9938c870e01e2eee13621e49341024fc5f67888b7a076
                             <td class=\"text-center\"><img src=\"";
             // line 23
             echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), $context["record"], "Poster", array()), "html", null, true);
-            echo "\"/> </td>
+            echo "\" alt=\"poster\" height=\"200rem\"/> </td>
                         </tr>
                     ";
         }
