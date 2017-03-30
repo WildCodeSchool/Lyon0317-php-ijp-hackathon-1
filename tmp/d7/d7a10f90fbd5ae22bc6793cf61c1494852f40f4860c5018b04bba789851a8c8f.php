@@ -16,16 +16,27 @@ class __TwigTemplate_d3f95fe98ae7ccf485dfd6729e2ba2f3e00e787ad1e472bec76c3f7234d
     protected function doDisplay(array $context, array $blocks = array())
     {
         // line 1
-        echo "<div class=\"row\">
+        echo "
+
+<div class=\"row\">
     <nav class=\"navbar navbar-default\" role=\"navigation\">
         <a class=\"navbar-brand\" href=\"/\">The Movie</a>
         <ul class=\"nav navbar-nav\">
             <li><a href=\"/\">Accueil</a></li>
             <li>
-                <form class=\"navbar-form\" role=\"search\">
+                <form class=\"navbar-form\" role=\"search\" action=\"";
+        // line 9
+        echo twig_escape_filter($this->env, twig_get_attribute($this->env, $this->getSourceContext(), ($context["_SERVER"] ?? null), "PHP_SELF", array(), "array"), "html", null, true);
+        echo "\" method=\"post\">
                     <div class=\"input-group\">
-                        <input type=\"text\" class=\"form-control\" placeholder=\"Search a film, series ...\" name=\"search\">
+                        <input type=\"text\" class=\"form-control\" placeholder=\"Search a movie, series ...\" name=\"title\">
+
+
+
+
                         <div class=\"input-group-btn\">
+
+
                             <button class=\"btn btn-default\" type=\"submit\"><i class=\"glyphicon glyphicon-search\"></i></button>
                         </div>
                     </div>
@@ -41,9 +52,14 @@ class __TwigTemplate_d3f95fe98ae7ccf485dfd6729e2ba2f3e00e787ad1e472bec76c3f7234d
         return "partial/header.html.twig";
     }
 
+    public function isTraitable()
+    {
+        return false;
+    }
+
     public function getDebugInfo()
     {
-        return array (  19 => 1,);
+        return array (  29 => 9,  19 => 1,);
     }
 
     public function getSourceContext()
