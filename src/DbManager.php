@@ -47,5 +47,4 @@ class DbManager
      return $result;
  }
 
-
 }

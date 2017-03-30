@@ -1,6 +1,5 @@
 <?php
 
-
 namespace omdb;
 
 class searchManager
@@ -10,6 +9,7 @@ class searchManager
     private $title;
     private $type;
     private $year;
+
 
     /**
      * @return mixed
@@ -74,7 +74,8 @@ class searchManager
 // Closing
         curl_close($ch);
 
-        return json_decode($result);
+        $data = json_decode($result);
+        return $data->Search;
     }
 }
 
