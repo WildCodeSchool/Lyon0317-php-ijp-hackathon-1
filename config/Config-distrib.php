@@ -2,7 +2,7 @@
 
 namespace omdb;
 
-class Config{
+class Config {
     const HOST  = "";
     const USER  = "";
     const PASS  = "";

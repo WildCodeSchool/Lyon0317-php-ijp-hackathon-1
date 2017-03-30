@@ -1,6 +1,5 @@
 <?php
 
-
 namespace omdb;
 
 class searchManager
