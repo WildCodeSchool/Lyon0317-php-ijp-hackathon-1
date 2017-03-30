@@ -10,7 +10,6 @@ class searchManager
     private $type;
     private $year;
 
-
     /**
      * @return mixed
      */
@@ -62,29 +61,20 @@ class searchManager
     public function getList()
     {
         $url = $this->api . "s=" . $this->title . "&type=" . $this->type . "&y=" . $this->year;
-        $ch = curl_init();
-// Disable SSL verification
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-// Will return the response, if false it print the response
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-// Set the url
-        curl_setopt($ch, CURLOPT_URL,$url);
-// Execute
-        $result=curl_exec($ch);
-// Closing
+        $ch = curl_init(); // Disable SSL verification
+
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Will return the response, if false it print the response
+
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // Set the url
+
+        curl_setopt($ch, CURLOPT_URL,$url); // Execute
+
+        $result=curl_exec($ch); // Closing
+
         curl_close($ch);
 
-        $data = json_decode($result);
-        return $data->Search;
+        $data =  json_decode($result);
+
+        return $data->Search; // Search make return works
     }
 }
-
-
-
-
-
-
-
-
-
-

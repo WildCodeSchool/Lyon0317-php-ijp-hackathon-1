@@ -1,25 +1,30 @@
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="panel panel-default">
-            <div class="panel-heading">Liste des filmes</div>
-            <table>
-                <tr>
-                    <th>Titre</th>
-                    <th>Anée/th>
-                    <th>Type</th>
-                    <th>ID</th>
-                    <th>Image de l'affiche</th>
-                </tr>
-                {% for record in data %}
+            <div class="panel-heading">
+                <h3 class="panel-title">Rechercher tes films ou séries préférés</h3>
+            </div>
+            <div class="panel-body">
+
+                <table class="table">
                     <tr>
-                        <td>{{ record.Title }}</td>
-                        <td>{{ record.Type }}</td>
-                        <td>{{ record.Year }}</td>
-                        <td>{{ record.imdbID }}</td>
-                        <td><img src="{{ record.Poster }}" alt="Image de l'affiche" width="200"></td>
+                        <th class="text-center">Titre</th>
+                        <th class="text-center">Année</th>
+                        <th class="text-center">Type</th>
+                        <th class="text-center">ID</th>
+                        <th class="text-center">Affiche</th>
                     </tr>
-                {% endfor %}
-            </table>
+                    {% for record in data %}
+                        <tr>
+                            <td class="text-center">{{ record.Title|capitalize }}</td>
+                            <td class="text-center">{{ record.Year }}</td>
+                            <td class="text-center">{{ record.Type }}</td>
+                            <td class="text-center">{{ record.imdbID }}</td>
+                            <td class="text-center"><img src="{{ record.Poster }}"/> </td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
         </div>
     </div>
 </div>

@@ -11,7 +11,7 @@ class DbManager
 
  public function __construct()
  {
-     $mysqli = new \mysqli(Config::HOST, Config::USER Config::PASS, Config::DB);
+     $mysqli = new \mysqli(Config::HOST, Config::USER, Config::PASS, Config::DB);
      if ($mysqli->connect_errno) {
          throw new \mysqli_sql_exception(
              "Failed to connect to MySQL : (" .
@@ -21,7 +21,6 @@ class DbManager
      }
      $this->connection = $mysqli;
  }
-
     /**
      * @return \mysqli
      */
@@ -46,5 +45,4 @@ class DbManager
      }
      return $result;
  }
-
 }
