@@ -1,7 +1,2 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: wilder
- * Date: 30/03/17
- * Time: 12:01
- */
+$loader = require_once __DIR__ . '/../vendor/autoload.php';
