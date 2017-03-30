@@ -62,19 +62,21 @@ class searchManager
     public function getList()
     {
         $url = $this->api . "s=" . $this->title . "&type=" . $this->type . "&y=" . $this->year;
+        $ch = curl_init(); // Disable SSL verification
 
-        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Will return the response, if false it print the response
 
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Disable SSL verification
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // Will return the response, if false it print the response
-        curl_setopt($ch, CURLOPT_URL,$url); // Set the url
-        $result=curl_exec($ch); // Execute
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // Set the url
 
-        curl_close($ch); // Closing
+        curl_setopt($ch, CURLOPT_URL,$url); // Execute
 
-        $data = json_decode($result);
+        $result=curl_exec($ch); // Closing
 
-        return $data->Search;
+        curl_close($ch);
+
+        $data =  json_decode($result);
+
+        return $data->Search; // Search make return works
     }
 }
 
