@@ -1,0 +1,23 @@
+/*
+Footer
+*/
+.footer {
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    background-color: #fff;
+}
+
+.border {
+    border-bottom: 3px solid #F4A443;
+    padding-top: 10px;
+}
+
+.quicklinks {
+    padding-top: 10px;
+    text-align: center;
+}
+
+.quicklinks a {
+    color: #F4A443;
+}
