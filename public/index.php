@@ -17,6 +17,8 @@ $index = true;      // Affichage de la page "index"
 if($_SERVER['REQUEST_METHOD'] == "POST")                    // Si "submit" (envoi de formulaire)
 {
     $searchManager->setTitle(trim($_POST['title']));            // On définit le mot-clé sans espace avant/après ( via trim() )
+    $searchManager->setYear(trim($_POST['year']));
+    $searchManager->setType(trim($_POST['type']));
     $data = $searchManager->getList();                          // On récupère dans $data le function getList() qui retourne la réponse de l'API
     $index = false;                                             // Affichage de la liste
 
