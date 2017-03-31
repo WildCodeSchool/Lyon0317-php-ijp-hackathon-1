@@ -12,14 +12,7 @@ class KeywordManager {
     private $keyword;
     private $number;
 
-    /**
-     * @param string $field
-     * @return string
-     */
-    private function escapeField($field)
-    {
-        return mysqli_real_escape_string($this->db->getConnection(), $field);
-    }
+
     /**
      * @return mixed
      */
