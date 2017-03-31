@@ -14,6 +14,11 @@ class SearchManager
     private $type;
     private $year;
 
+    public function __construct($db)
+    {
+        $this->db = $db;
+    }
+
     /**
      * @return mixed
      */

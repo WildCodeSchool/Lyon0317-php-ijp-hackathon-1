@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 $db = new \omdb\DbManager();
-$searchManager = new \omdb\SearchManager();
+$searchManager = new \omdb\SearchManager($db);
 $keywordManager = new \omdb\KeywordManager($db);
 
 $loader = new Twig_Loader_Filesystem(__DIR__ . '/../view');
