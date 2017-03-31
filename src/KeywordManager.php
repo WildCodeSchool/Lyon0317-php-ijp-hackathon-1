@@ -25,7 +25,7 @@ class KeywordManager {
      */
     public function setKeyword($keyword)
     {
-        $this->keyword = $keyword;
+        $this->keyword = $this->escapeFields($keyword);
     }
 
     /**
@@ -77,11 +77,9 @@ class KeywordManager {
         $result = $this->db->execSql($sql);
         return mysqli_fetch_assoc($result);
     }
-    
-    private function espaceFields($field)
+
+    private function escapeFields($field)
     {
-        return mysqli_real_escape_string($this->, $field);
+        return mysqli_real_escape_string($this->db->getConnection(), $field);
     }
-    
-    
 }
