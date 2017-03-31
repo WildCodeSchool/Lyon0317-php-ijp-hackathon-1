@@ -1,30 +1,36 @@
-<div class="row text-center">
+<div class="row">
     <nav class="navbar navbar-default" role="navigation">
-        <a class="navbar-brand" href="/">Film</a>
+        <a class="navbar-brand" href="/"><i class="fa fa-video-camera" aria-hidden="true"></i> The Movie</a>
         <ul class="nav navbar-nav">
-            <li><a href="/">Accueil</a></li>
+            <li><a href="/"><i class="fa fa-home" aria-hidden="true"></i></a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
             <li>
-                <form class="navbar-form navbar-inverse bg-primary jumbotron" role="search" action="" method="post">
-
-                    <div class="form-group">
-                        <label for="title">Titre</label>
-                        <input type="text" class="form-control" placeholder="Search a movie, series ..." name="title" id="exampleInput1">
+                <form class="navbar-form" role="search" action="" method="post">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search a film, series ..." name="title">
                     </div>
-
-                    <div class="form-group">
-                        <label for="type">Type de vidéo</label>
-                        <select class="form-control" id="exampleSelect1" name="type">
-                            <option>Film</option>
-                            <option>Série</option>
+                    <div class="input-group">
+                        <select name="type">
+                            <option value="">Type</option>
+                            <option value="movie">Film</option>
+                            <option value="series">Série</option>
+                            <option value="episode">Episode</option>
                         </select>
                     </div>
-
-                    <div class="form-group">
-                        <label for="title">Année</label>
-                        <input type="text" class="form-control" placeholder="Search an year ..." name="year" id="exampleInput2">
+                    <div class="input-group">
+                        <select name="year">
+                            <option value="">Année</option>
+                            {% for i in "now"|date("Y")..1910 %}
+                                <option value="{{ i }}">{{ i }}</option>
+                            {% endfor %}
+                        </select>
                     </div>
-
-                    <button class="btn btn-outline-success" type="submit">Recherche</button>
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                        </div>
+                    </div>
                 </form>
             </li>
         </ul>

@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 
 $db = new \omdb\DbManager();
-$searchManager = new \omdb\SearchManager();
+$searchManager = new \omdb\SearchManager($db);
 $keywordManager = new \omdb\KeywordManager($db);
 
 $loader = new Twig_Loader_Filesystem(__DIR__ . '/../view');
@@ -17,6 +17,8 @@ $index = true;      // Affichage de la page "index"
 if($_SERVER['REQUEST_METHOD'] == "POST")                    // Si "submit" (envoi de formulaire)
 {
     $searchManager->setTitle(trim($_POST['title']));            // On définit le mot-clé sans espace avant/après ( via trim() )
+    $searchManager->setType($_POST['type']);                    // On définit le type
+    $searchManager->setYear($_POST['year']);                    // On définit l'année
     $data = $searchManager->getList();                          // On récupère dans $data le function getList() qui retourne la réponse de l'API
     $index = false;                                             // Affichage de la liste
 

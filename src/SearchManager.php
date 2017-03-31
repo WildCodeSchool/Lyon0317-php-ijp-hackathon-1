@@ -14,6 +14,11 @@ class SearchManager
     private $type;
     private $year;
 
+    private function escapeFields($field)
+    {
+        return mysqli_real_escape_string($this->db->getConnection(), $field);
+    }
+
     /**
      * @return mixed
      */
@@ -62,10 +67,18 @@ class SearchManager
         $this->year = $year;
     }
 
+    /**
+     * @param DbManager $db
+     */
+    public function __construct($db)
+    {
+        $this->db = $db;
+    }
+
     public function getList()
     {
         $url = $this->api . "s=" . $this->title . "&type=" . $this->type . "&y=" . $this->year;
-
+        var_dump($url);
         $ch = curl_init();
 
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);    // Disable SSL verification
@@ -83,11 +96,6 @@ class SearchManager
         } else {                            // Else API return "Not Found"
             return false;
         }
-    }
-
-    private function escapeFields($field)
-    {
-        return mysqli_real_escape_string($this->db->getConnection(), $field);
     }
 }
 
