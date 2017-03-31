@@ -25,7 +25,7 @@ class KeywordManager {
      */
     public function setKeyword($keyword)
     {
-        $this->keyword = $keyword;
+        $this->keyword = $this->escapeFields($keyword);
     }
 
     /**
@@ -76,5 +76,10 @@ class KeywordManager {
         $sql = "SELECT * FROM keyword WHERE keyword = '".$word."'";
         $result = $this->db->execSql($sql);
         return mysqli_fetch_assoc($result);
+    }
+
+    private function escapeFields($field)
+    {
+        return mysqli_real_escape_string($this->db->getConnection(), $field);
     }
 }
