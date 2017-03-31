@@ -2,8 +2,12 @@
 
 namespace omdb;
 
-class searchManager
+class SearchManager
 {
+    /**
+     * @var DbManager
+     */
+    private $db;
 
     private $api = 'http://www.omdbapi.com/?';
     private $title;
@@ -23,7 +27,7 @@ class searchManager
      */
     public function setTitle($title)
     {
-        $this->title = $title;
+        $this->title = $this->escapeFields($title);
     }
 
     /**
@@ -61,24 +65,28 @@ class searchManager
     public function getList()
     {
         $url = $this->api . "s=" . $this->title . "&type=" . $this->type . "&y=" . $this->year;
-        $ch = curl_init(); // Disable SSL verification
 
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false); // Will return the response, if false it print the response
+        $ch = curl_init();
 
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); // Set the url
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);    // Disable SSL verification
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);     // Will return the response, if false it print the response
+        curl_setopt($ch, CURLOPT_URL,$url);                 // Set the url
 
-        curl_setopt($ch, CURLOPT_URL,$url); // Execute
+        $result = curl_exec($ch);                                        // Execute
 
-        $result=curl_exec($ch); // Closing
+        curl_close($ch);                                                 // Closing
 
-        curl_close($ch);
+        $data =  json_decode($result);                                   // decode Json
 
-        $data =  json_decode($result);
-
-        if($data->{'Response'} == "True"){
-            return $data->Search; // Search make return works
-        } else {
+        if($data->{'Response'} == "True"){  // If API return a result
+            return $data->Search;               // return array(Search) which contains all results
+        } else {                            // Else API return "Not Found"
             return false;
         }
+    }
+
+    private function escapeFields($field)
+    {
+        return mysqli_real_escape_string($this->db->getConnection(), $field);
     }
 }
