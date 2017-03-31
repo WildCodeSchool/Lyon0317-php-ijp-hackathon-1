@@ -2,7 +2,7 @@
 
 namespace omdb;
 
-class searchManager
+class SearchManager
 {
     /**
      * @var DbManager
