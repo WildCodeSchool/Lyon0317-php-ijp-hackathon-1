@@ -4,6 +4,27 @@
     margin-right: 0 !important;
 }
 
+/* Jumbotron */
+
+.jumbotron {
+    background-image: url("https://cdn.allwallpaper.in/wallpapers/1920x1080/14095/minions-in-cinema-1920x1080-wallpaper.jpg");
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    background-position: center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: #fff;
+}
+
+/* Table */
+
+.table td {
+    vertical-align: middle !important;
+    font-size: 20px;
+}
+
 /* Footer */
 
 .footer {
@@ -14,7 +35,7 @@
 }
 
 .border {
-    border-bottom: 3px solid #F4A443;
+    border-bottom: 3px solid #000;
     padding-top: 10px;
 }
 

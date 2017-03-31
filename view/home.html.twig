@@ -7,6 +7,25 @@
                     <p>Site de recherche de film, séries et d'épisodes !</p>
                 </div>
             </div>
+
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <h4>Les 5 mots-clés les plus recherchés :</h4>
+                    <div class="list-group">
+                        {% for number in numbers %}
+                            <a href="/?key={{ number.keyword }}" class="list-group-item">{{ number.keyword }} <span class="badge">{{ number.numbercount }}</span></a>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <h4>Les 5 derniers mots-clés recherchés :</h4>
+                    <div class="list-group">
+                        {% for id in ids %}
+                            <a href="/?key={{ id.keyword }}" class="list-group-item">{{ id.keyword }}</a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
         {% else %}
             {% if data == false %}
                 <div class="alert alert-danger" role="alert"><strong>Error!</strong> Le mot-clé renseigné est faux ou ne retourne aucun résultat :)</div>
@@ -26,16 +45,17 @@
                             </tr>
                             {% for record in data %}
                                 <tr>
+                                    <td class="text-center"><img src="{{ record.Poster }}" alt="{{ record.Title }}" class="img-thumbnail" height="200rem"/> </td>
                                     <td class="text-center">{{ record.Title|capitalize }}</td>
                                     <td class="text-center">{{ record.Year }}</td>
-                                    <td class="text-center">{{ record.Type }}</td>
-                                    <td class="text-center">{{ record.imdbID }}</td>
-                                    <td class="text-center"><img src="{{ record.Poster }}" alt="poster" height="200rem"/> </td>
+                                    <td class="text-center">{{ record.Type|capitalize }}</td>
+                                    <td class="text-center"><a class="btn btn-info" data-toggle="modal" data-target="{{ record.imdbID }}">{{ record.imdbID }}</a></td>
                                 </tr>
                             {% endfor %}
                         </table>
                     </div>
                 </div>
+                {{ include('info.html.twig') }}
             {% endif %}
         {% endif %}
     </div>

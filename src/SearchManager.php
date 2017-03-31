@@ -78,7 +78,7 @@ class SearchManager
     public function getList()
     {
         $url = $this->api . "s=" . $this->title . "&type=" . $this->type . "&y=" . $this->year;
-        var_dump($url);
+
         $ch = curl_init();
 
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);    // Disable SSL verification

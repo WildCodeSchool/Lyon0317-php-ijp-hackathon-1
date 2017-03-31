@@ -13,6 +13,8 @@ $twig = new Twig_Environment($loader, array(
 
 $data = array();    // Définition de $data
 $index = true;      // Affichage de la page "index"
+$listNumber = $keywordManager->listOrder('numbercount'); // Liste des mots-clés
+$listId = $keywordManager->listOrder('id'); // Liste des mots-clés
 
 if($_SERVER['REQUEST_METHOD'] == "POST")                    // Si "submit" (envoi de formulaire)
 {
@@ -22,17 +24,23 @@ if($_SERVER['REQUEST_METHOD'] == "POST")                    // Si "submit" (envo
     $data = $searchManager->getList();                          // On récupère dans $data le function getList() qui retourne la réponse de l'API
     $index = false;                                             // Affichage de la liste
 
-    // Gestion mot-clé
     $keyword = $keywordManager->findKeyword(trim($_POST['title'])); // Recherche du mot-clé dans la BDD grâce à la function findKeyword($word)
-
     if ($keyword['keyword'] != "") {                            // Si le mot-clé recherché existe déjà
         $keywordManager->setNumber($keyword['numbercount']+1);      // On définit le nouveau nombre (+1)
         $keywordManager->updateKeyword($keyword['id']);             // Mise à jour avec la paramètre $id
     } else {                                                    // Si le mot-clé n'existe pas
-        $keywordManager->setKeyword(trim($_POST['title']));         // On définit le mot-clé sans espace avant/après ( via trim() )
-        $keywordManager->setNumber(1);                              // On définit le numbercount par défaut à 1
-        $keywordManager->addKeyword();                              // Ajout du mot-clé
+        if ($data != false) {
+            $keywordManager->setKeyword(trim($_POST['title']));         // On définit le mot-clé sans espace avant/après ( via trim() )
+            $keywordManager->setNumber(1);                              // On définit le numbercount par défaut à 1
+            $keywordManager->addKeyword();                              // Ajout du mot-clé
+        }
     }
+} elseif (isset($_GET['key']) && $_GET['key'] != "")
+{
+    $searchManager->setTitle($_GET['key']);
+    $data = $searchManager->getList();
+    $index = false;
 }
 
-echo $twig->render('index.html.twig', array('data' => $data, 'index' => $index));   // Appel de Twig avec les "paramètres" $data & $index
+// Appel de Twig avec les "paramètres" $data & $index
+echo $twig->render('index.html.twig', array('data' => $data, 'index' => $index, 'numbers' => $listNumber, 'ids' => $listId));
