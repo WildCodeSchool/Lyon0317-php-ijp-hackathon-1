@@ -1,22 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: wilder
- * Date: 30/03/17
- * Time: 23:13
- */
 
 namespace omdb;
 
+class KeywordManager {
 
-class KeywordManager
-{
-    const TABLE = "keyword";
-
+    /**
+     * @var DbManager
+     */
     private $db;
 
     private $keyword;
-    private $numbercount;
+    private $number;
 
     /**
      * @return mixed
@@ -28,47 +22,59 @@ class KeywordManager
 
     /**
      * @param mixed $keyword
-     * @return KeywordManager
      */
     public function setKeyword($keyword)
     {
         $this->keyword = $keyword;
-        return $this;
     }
 
     /**
      * @return mixed
      */
-    public function getNumbercount()
+    public function getNumber()
     {
-        return $this->numbercount;
+        return $this->number;
     }
 
     /**
-     * @param mixed $numbercount
-     * @return KeywordManager
+     * @param mixed $number
      */
-    public function setNumbercount($numbercount)
+    public function setNumber($number)
     {
-        $this->numbercount = $numbercount;
-        return $this;
+        $this->number = $number;
     }
-    
+
+    /**
+     * @param DbManager $db
+     */
     public function __construct($db)
     {
         $this->db = $db;
     }
 
-    public function addKeyword()
-    {
-        $sql = "INSERT INTO " . self::TABLE . " (keyword, numbercount) VALUES ('$this->keyword', '$this->numbercount');";
+    /**
+     * @param string $keyword , integer $number
+     */
+    public function addKeyword() {
+        $sql = "INSERT INTO keyword (keyword, numbercount) VALUES('$this->keyword', '$this->number');";
         $this->db->execSql($sql);
     }
 
-    public function updateKeyword($number)
-    {
-        $number = $number + 1;
-        $sql = "UPDATE" . self::TABLE . " SET numbercount = '$this->numbercount' WHERE id = $id;";
+    /**
+     * @param integer $id , string $keyword, integer $number
+     */
+    public function updateKeyword($id) {
+        $sql = "UPDATE keyword SET numbercount = '$this->number' WHERE id=" . $id;
         $this->db->execSql($sql);
+    }
+
+    /**
+     * @return array|null
+     */
+    public function findKeyword($word)
+    {
+        $sql = "SELECT * FROM keyword WHERE keyword = '".$word."'";
+        $result = $this->db->execSql($sql);
+        return mysqli_fetch_assoc($result);
     }
 }

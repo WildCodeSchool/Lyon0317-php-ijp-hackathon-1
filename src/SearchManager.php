@@ -75,6 +75,20 @@ class SearchManager
 
         $data =  json_decode($result);
 
-        return $data->Search; // Search make return works
+        if($data->{'Response'} == "True"){
+            return $data->Search; // Search make return works
+        } else {
+            return false;
+        }
     }
 }
+
+
+
+
+
+
+
+
+
+
