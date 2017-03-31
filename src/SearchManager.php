@@ -72,10 +72,13 @@ class searchManager
         $result=curl_exec($ch); // Closing
 
         curl_close($ch);
-        $data = json_decode($result);
-        if($data->{'Response'} == True){
-            return $data->Search;
+
+        $data =  json_decode($result);
+
+        if($data->{'Response'} == "True"){
+            return $data->Search; // Search make return works
+        } else {
+            return false;
         }
-         return false;
     }
 }

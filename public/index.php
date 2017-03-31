@@ -11,15 +11,24 @@ $twig = new Twig_Environment($loader, array(
     'cache' => __DIR__ . '/../tmp',
 ));
 
-
 $data = array();
+$index = true; // Show Jumbotron
+
 if($_SERVER['REQUEST_METHOD'] == "POST")
 {
     $searchManager->setTitle($_POST['title']);
     $data = $searchManager->getList();
-    $keywordManager->setKeyword($_POST['title']);
-    $keywordManager->addKeyword();
+    $index = false; // Show list
+//
+    $keyword = $keywordManager->findKeyword($_POST['title']);
+    if ($keyword['keyword'] != "") {
+        $keywordManager->setNumber($keyword['numbercount']+1);
+        $keywordManager->updateKeyword($keyword['id']);
+    } else {
+        $keywordManager->setKeyword($_POST['title']);
+        $keywordManager->setNumber(1);
+        $keywordManager->addKeyword();
+    }
 }
 
-
-echo $twig->render('index.html.twig', array('data' => $data)); // traduction de php dans twig
+echo $twig->render('index.html.twig', array('data' => $data, 'index' => $index)); // traduction de php dans twig
