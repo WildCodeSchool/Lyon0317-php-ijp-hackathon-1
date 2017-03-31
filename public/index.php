@@ -13,6 +13,7 @@ $twig = new Twig_Environment($loader, array(
 
 $data = array();    // Définition de $data
 $index = true;      // Affichage de la page "index"
+$list  = $keywordManager->listKeyword();
 
 if($_SERVER['REQUEST_METHOD'] == "POST")                    // Si "submit" (envoi de formulaire)
 {
@@ -29,10 +30,12 @@ if($_SERVER['REQUEST_METHOD'] == "POST")                    // Si "submit" (envo
         $keywordManager->setNumber($keyword['numbercount']+1);      // On définit le nouveau nombre (+1)
         $keywordManager->updateKeyword($keyword['id']);             // Mise à jour avec la paramètre $id
     } else {                                                    // Si le mot-clé n'existe pas
-        $keywordManager->setKeyword(trim($_POST['title']));         // On définit le mot-clé sans espace avant/après ( via trim() )
-        $keywordManager->setNumber(1);                              // On définit le numbercount par défaut à 1
-        $keywordManager->addKeyword();                              // Ajout du mot-clé
+        if($data != false){
+            $keywordManager->setKeyword(trim($_POST['title']));         // On définit le mot-clé sans espace avant/après ( via trim() )
+            $keywordManager->setNumber(1);                              // On définit le numbercount par défaut à 1
+            $keywordManager->addKeyword();// Ajout du mot-clé
+        }
     }
 }
 
-echo $twig->render('index.html.twig', array('data' => $data, 'index' => $index));   // Appel de Twig avec les "paramètres" $data & $index
+echo $twig->render('index.html.twig', array('data' => $data, 'index' => $index, 'list' => $list));   // Appel de Twig avec les "paramètres" $data & $index

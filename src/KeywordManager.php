@@ -69,4 +69,13 @@ class KeywordManager {
     {
         return mysqli_real_escape_string($this->db->getConnection(), $field);
     }
+
+    public function listKeyword()
+    {
+        $sql = "SELECT * FROM keyword ORDER BY id DESC LIMIT 5";
+        return $this->db->execSql($sql);
+
+    }
+
+
 }
