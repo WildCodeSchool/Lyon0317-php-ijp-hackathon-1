@@ -1,18 +1,12 @@
 <?php
-
 namespace omdb;
-
 class KeywordManager {
-
     /**
      * @var DbManager
      */
     private $db;
-
     private $keyword;
     private $number;
-
-
     /**
      * @return mixed
      */
@@ -20,7 +14,6 @@ class KeywordManager {
     {
         return $this->keyword;
     }
-
     /**
      * @param mixed $keyword
      */
@@ -28,7 +21,6 @@ class KeywordManager {
     {
         $this->keyword = $this->escapeFields($keyword);
     }
-
     /**
      * @return mixed
      */
@@ -36,15 +28,13 @@ class KeywordManager {
     {
         return $this->number;
     }
-
     /**
      * @param mixed $number
      */
     public function setNumber($number)
     {
-        $this->number = $number->escapeField($number);
+        $this->number = $number;
     }
-
     /**
      * @param DbManager $db
      */
@@ -52,7 +42,6 @@ class KeywordManager {
     {
         $this->db = $db;
     }
-
     /**
      * @param string $keyword , integer $number
      */
@@ -60,7 +49,6 @@ class KeywordManager {
         $sql = "INSERT INTO keyword (keyword, numbercount) VALUES('$this->keyword', '$this->number');";
         $this->db->execSql($sql);
     }
-
     /**
      * @param integer $id , string $keyword, integer $number
      */
@@ -68,7 +56,6 @@ class KeywordManager {
         $sql = "UPDATE keyword SET numbercount = '$this->number' WHERE id=" . $id;
         $this->db->execSql($sql);
     }
-
     /**
      * @return array|null
      */
@@ -78,7 +65,6 @@ class KeywordManager {
         $result = $this->db->execSql($sql);
         return mysqli_fetch_assoc($result);
     }
-
     private function escapeFields($field)
     {
         return mysqli_real_escape_string($this->db->getConnection(), $field);

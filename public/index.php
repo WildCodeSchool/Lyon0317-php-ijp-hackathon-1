@@ -16,14 +16,16 @@ $index = true;      // Affichage de la page "index"
 
 if($_SERVER['REQUEST_METHOD'] == "POST")                    // Si "submit" (envoi de formulaire)
 {
-    $searchManager->setTitle(trim($_POST['title']));            // On définit le mot-clé sans espace avant/après ( via trim() )
+    $searchManager->setTitle(trim($_POST['title'])); // On définit le mot-clé sans espace avant/après ( via trim() )
+    $searchManager->setYear(trim($_POST['year']));
+    $searchManager->setType(trim($_POST['type']));
     $data = $searchManager->getList();                          // On récupère dans $data le function getList() qui retourne la réponse de l'API
     $index = false;                                             // Affichage de la liste
 
     // Gestion mot-clé
     $keyword = $keywordManager->findKeyword(trim($_POST['title'])); // Recherche du mot-clé dans la BDD grâce à la function findKeyword($word)
 
-    if ($keyword['keyword'] != "") {                            // Si le mot-clé recherché existe déjà
+    if ($keyword['keyword'] != NULL ) {                            // Si le mot-clé recherché existe déjà
         $keywordManager->setNumber($keyword['numbercount']+1);      // On définit le nouveau nombre (+1)
         $keywordManager->updateKeyword($keyword['id']);             // Mise à jour avec la paramètre $id
     } else {                                                    // Si le mot-clé n'existe pas
