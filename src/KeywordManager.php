@@ -77,4 +77,11 @@ class KeywordManager {
         $result = $this->db->execSql($sql);
         return mysqli_fetch_assoc($result);
     }
+    
+    private function espaceFields($field)
+    {
+        return mysqli_real_escape_string($this->, $field);
+    }
+    
+    
 }
