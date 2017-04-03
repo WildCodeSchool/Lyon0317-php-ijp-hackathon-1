@@ -16,42 +16,38 @@
                 </div>
 
 
-            {% else %}
-                {% if data == false %}
-                    <div class="alert alert-danger" role="alert"><strong>Error!</strong> Le mot-clé renseigné est faux ou ne retourne aucun résultat :)</div>
-                {% else  %}
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">Rechercher tes films ou séries préférés</h3>
-                        </div>
-                        <div class="panel-body movie">
-                            <table class="table">
-                                <tr>
-                                    <th class="text-center">Titre</th>
-                                    <th class="text-center">Année</th>
-                                    <th class="text-center">Type</th>
-                                    <th class="text-center">ID</th>
-                                    <th class="text-center">Affiche</th>
-                                </tr>
-                                {% for record in data %}
+                {% else %}
+                    {% if data == false %}
+                        <div class="alert alert-danger" role="alert"><strong>Error!</strong> Le mot-clé renseigné est faux ou ne retourne aucun résultat :)</div>
+                    {% else  %}
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Rechercher tes films ou séries préférés</h3>
+                            </div>
+                            <div class="panel-body movie">
+                                <table class="table">
                                     <tr>
-                                        <td class="text-center">{{ record.Title|capitalize }}</td>
-                                        <td class="text-center">{{ record.Year }}</td>
-                                        <td class="text-center">{{ record.Type }}</td>
-                                        <td class="text-center">{{ record.imdbID }}</td>
-                                        <td class="text-center"><img src="{{ record.Poster }}" alt="poster" height="200rem"/> </td>
+                                        <th class="text-center">Titre</th>
+                                        <th class="text-center">Année</th>
+                                        <th class="text-center">Type</th>
+                                        <th class="text-center">ID</th>
+                                        <th class="text-center">Affiche</th>
                                     </tr>
-                                {% endfor %}
-                            </table>
+                                    {% for record in data %}
+                                        <tr>
+                                            <td class="text-center">{{ record.Title|capitalize }}</td>
+                                            <td class="text-center">{{ record.Year }}</td>
+                                            <td class="text-center">{{ record.Type }}</td>
+                                            <td class="text-center">{{ record.imdbID }}</td>
+                                            <td class="text-center"><img src="{{ record.Poster }}" alt="poster" height="200rem"/> </td>
+                                        </tr>
+                                    {% endfor %}
+                                </table>
+                            </div>
                         </div>
-                    </div>
+                    {% endif %}
                 {% endif %}
-            {% endif %}
+            </div>
         </div>
-
-
-
-
-
-
     </div>
+</div>

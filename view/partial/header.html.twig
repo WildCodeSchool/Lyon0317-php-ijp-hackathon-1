@@ -1,45 +1,46 @@
 <div class="container-fluid">
-<h1 id="title">Base de données vidéos<img id="logo" src="http://effervescence.info/wp-content/uploads/2016/09/liste_Combo-lecture-cinema_3459.jpeg" width="200rem"></h1>
+    <h1 id="title">Base de données vidéos<img id="logo" src="http://effervescence.info/wp-content/uploads/2016/09/liste_Combo-lecture-cinema_3459.jpeg" width="200rem"></h1>
 
-<div class="row text-center">
-    <nav class="navbar navbar-center" role="navigation">
+    <div class="row text-center">
+        <nav class="navbar navbar-center" role="navigation">
 
-        <a class="navbar-brand" href="/">Film</a>
-        <ul class="nav navbar-nav">
-            <li><a href="/">Accueil</a></li>
-            <li>
-                <form class="navbar-form navbar-inverse bg-primary jumbotron" role="search" action="" method="post">
+            <a class="navbar-brand" href="/">Film</a>
+            <ul class="nav navbar-nav">
+                <li><a href="/">Accueil</a></li>
+                <li>
+                    <form class="navbar-form navbar-inverse bg-primary jumbotron" role="search" action="" method="post">
 
-                    <div class="form-group">
-                        <label for="title">Titre</label>
-                        <input type="text" class="form-control" placeholder="Search a movie, series ..." name="title" id="exampleInput1" required>
-                    </div>
+                        <div class="form-group">
+                            <label for="title">Titre</label>
+                            <input type="text" class="form-control" placeholder="Search a movie, series ..." name="title" id="exampleInput1" required>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="type">Type de vidéo</label>
-                        <select class="form-control" id="exampleSelect1" name="type">
-                            <option value="">Type</option>
-                            <option value="movie">Film</option>
-                            <option value="serie">Série</option>
-                            <option value="episode">Episode</option>
-                        </select>
-                    </div>
+                        <div class="form-group">
+                            <label for="type">Type de vidéo</label>
+                            <select class="form-control" id="exampleSelect1" name="type">
+                                <option value="">Type</option>
+                                <option value="movie">Film</option>
+                                <option value="serie">Série</option>
+                                <option value="episode">Episode</option>
+                            </select>
+                        </div>
 
-                    <div class="form-group">
-                        <label for="year">Année</label>
+                        <div class="form-group">
+                            <label for="year">Année</label>
 
-                        <select type="text" class="form-control" placeholder="Search an year ..." name="year" id="exampleInput2">
-                            <option value="">Année</option>
-                            {% for i in "now"|date("Y")..1900 %}
-                                <option value="{{ i }}">{{ i }}</option>
-                            {% endfor %}
-                        </select>
-                    </div>
+                            <select type="text" class="form-control" placeholder="Search an year ..." name="year" id="exampleInput2">
+                                <option value="">Année</option>
+                                {% for i in "now"|date("Y")..1900 %}
+                                    <option value="{{ i }}">{{ i }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
 
-                    <button class="btn btn-outline-success" type="submit">Recherche</button>
-                </form>
-            </li>
-        </ul>
+                        <button class="btn btn-outline-success" type="submit">Recherche</button>
+                    </form>
+                </li>
+            </ul>
 
-    </nav>
-</div>>
+        </nav>
+    </div>>
+</div>
